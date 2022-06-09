@@ -6,7 +6,8 @@ public class Snacks {
     private String productName;
     private double price;
     private String type;
-    private int amountInStock = 5;
+    private int amountInStock;
+    InputFile inputFile = new InputFile();
 
 
     public Snacks(String slotLocation, String productName, double price, String type) {
@@ -14,9 +15,9 @@ public class Snacks {
         this.productName = productName;
         this.price = price;
         this.type = type;
+        amountInStock = 5;
     }
 
-<<<<<<< HEAD
     public int getAmountInStock() {
         return amountInStock;
     }
@@ -37,8 +38,4 @@ public class Snacks {
         }
         return message;
     }
-=======
-
-
->>>>>>> 68b49604a7891281370a2bc362c3e552a804c268
 }

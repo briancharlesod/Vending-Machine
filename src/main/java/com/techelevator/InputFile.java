@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class InputFile {
 
 private String filePath = "vendingmachine.csv";
-
+public Map<String, Snacks> snacksMap = new HashMap<>();
 
 
 public void initiateFile() {
@@ -16,7 +16,6 @@ public void initiateFile() {
 
 try {
     Scanner reader = new Scanner(newFile);
-    Map<String, Snacks> snacksMap = new HashMap<>();
     int counter = 0;
     while (reader.hasNextLine()) {
         counter++;
