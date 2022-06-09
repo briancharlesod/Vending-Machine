@@ -53,13 +53,13 @@ public class Snacks {
 
     public String getSound(){
         String message = "No snack found!";
-        if(type.equals("chip")){
+        if(type.equals("Chip")){
             message = "Crunch Crunch, Yum!";
-        } else if(type.equals("candy")){
+        } else if(type.equals("Candy")){
             message="Munch Munch, Yum!";
-        } else if(type.equals("drink")){
+        } else if(type.equals("Drink")){
             message="Glug Glug, Yum!";
-        } else if(type.equals("gum")){
+        } else if(type.equals("Gum")){
             message = "Chew Chew, Yum!";
         }
         return message;
