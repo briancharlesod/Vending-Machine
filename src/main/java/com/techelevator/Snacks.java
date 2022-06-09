@@ -6,7 +6,7 @@ public class Snacks {
     private String productName;
     private double price;
     private String type;
-//    private int ammount = 5;
+   private int ammount = 5;
 
 
     public Snacks(String slotLocation, String productName, double price, String type) {
@@ -15,7 +15,6 @@ public class Snacks {
         this.price = price;
         this.type = type;
     }
-
 
 
 }
