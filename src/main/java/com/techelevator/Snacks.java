@@ -6,10 +6,9 @@ public class Snacks {
     private String productName;
     private double price;
     private String type;
+    private int amountInStock = 5;
 
-   private int ammount = 5;
 
-    private int amountInStock;
     InputFile inputFile = new InputFile();
 
 
@@ -19,11 +18,33 @@ public class Snacks {
         this.productName = productName;
         this.price = price;
         this.type = type;
-        amountInStock = 5;
+        amountInStock = getAmountInStock();
+    }
+
+    public String getSlotLocation() {
+        return slotLocation;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public String getType() {
+        return type;
     }
 
     public int getAmountInStock() {
         return amountInStock;
+    }
+
+
+
+    public void setAmountInStock(int amountInStock) {
+        this.amountInStock = amountInStock;
     }
 
 
@@ -44,6 +65,8 @@ public class Snacks {
         return message;
     }
 
-    
-
+    @Override
+    public String toString() {
+        return slotLocation + " " + productName + " $" + price + " " + amountInStock + " left";
+    }
 }

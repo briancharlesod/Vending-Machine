@@ -10,6 +10,10 @@ public class Application {
     input.initiateFile();
     Scanner keyboard = new Scanner(System.in);
 
+        System.out.println(input.snacksMap.get("A1"));
+        for (String i: input.snacksMap.keySet()){
+            System.out.println( input.snacksMap.get(i));
+        }
 
 
 
