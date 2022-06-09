@@ -16,6 +16,7 @@ public class Snacks {
         this.type = type;
     }
 
+<<<<<<< HEAD
     public int getAmountInStock() {
         return amountInStock;
     }
@@ -36,4 +37,8 @@ public class Snacks {
         }
         return message;
     }
+=======
+
+
+>>>>>>> 68b49604a7891281370a2bc362c3e552a804c268
 }
