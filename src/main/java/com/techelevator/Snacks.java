@@ -9,8 +9,11 @@ public class Snacks {
 //    private int ammount = 5;
 
 
-
-
-
+    public Snacks(String slotLocation, String productName, double price, String type) {
+        this.slotLocation = slotLocation;
+        this.productName = productName;
+        this.price = price;
+        this.type = type;
+    }
 
 }
