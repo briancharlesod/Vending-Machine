@@ -8,10 +8,11 @@ public class Application {
     public static void main(String[] args) {
     InputFile input = new InputFile();
     input.initiateFile();
+    Scanner keyboard = new Scanner(System.in);
 
-    for (String i :input.getSnacksMap().keySet()){
-        System.out.println(input.snacksMap.get(i));
-    }
+
+
+
 
 
 
