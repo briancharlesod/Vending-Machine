@@ -7,7 +7,10 @@ public class Snacks {
     private double price;
     private String type;
     private int amountInStock = 5;
+
+
     InputFile inputFile = new InputFile();
+
 
 
     public Snacks(String slotLocation, String productName, double price, String type) {
@@ -38,9 +41,12 @@ public class Snacks {
         return amountInStock;
     }
 
+
+
     public void setAmountInStock(int amountInStock) {
         this.amountInStock = amountInStock;
     }
+
 
     public void purchaseItem(String itemNumber){
     }
@@ -57,5 +63,10 @@ public class Snacks {
             message = "Chew Chew, Yum!";
         }
         return message;
+    }
+
+    @Override
+    public String toString() {
+        return slotLocation + " " + productName + " $" + price + " " + amountInStock + " left";
     }
 }
