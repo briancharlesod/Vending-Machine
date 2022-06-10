@@ -65,7 +65,6 @@ public class SnacksMap {
 
     public String displayMode(String key){
         String price = df.format(snacksMap.get(key).getPrice());
-        String displayProduct = snacksMap.get(key).getSlotLocation() + " " + snacksMap.get(key).getProductName() + " $" + price + " Stock: " + snacksMap.get(key).getAmountInStock();
-        return displayProduct;
+        return snacksMap.get(key).getSlotLocation() + " " + snacksMap.get(key).getProductName() + " $" + price + " Stock: " + snacksMap.get(key).getAmountInStock();
     }
 }

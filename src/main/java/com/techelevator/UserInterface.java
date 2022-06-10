@@ -22,7 +22,6 @@ public class UserInterface {
         } else if (menuSelection.equals("2") || menuSelection.equals("(2)")) {
             purchaseMenu();
         } else if (menuSelection.equals("3") || menuSelection.equals("(3)")) {
-
             System.exit(0);
         } else if (menuSelection.equals("4") || menuSelection.equals("(4)")) {
             log.readLog();
@@ -34,18 +33,20 @@ public class UserInterface {
     }
 
     public void purchaseMenu(){
-        System.out.println("Current Money Provided: $" + balance.getRemainingBalance());
+        System.out.println("Current Money Provided: $" + balance.getDisplayBalance());
         System.out.println("(1) Feed Money");
         System.out.println("(2) Select Product");
         System.out.println("(3) Finish Transaction");
         menuSelection = keyboard.nextLine();
         if(menuSelection.equals("1") || menuSelection.equals("(1)")){
-            feedMoney();
+            System.out.print("How much would you like to add? $");
+            String value = keyboard.nextLine();
+            feedMoney(value);
             purchaseMenu();
         } else if(menuSelection.equals("2") || menuSelection.equals("(2)")){
             interfacePurchasing();
         } else if(menuSelection.equals("3") || menuSelection.equals("(3)")){
-            log.changeLog(Balance.getRemainingBalance());
+            log.changeLog(balance.getRemainingBalance());
             System.out.println(balance.change());
             mainMenu();
         } else{
@@ -56,15 +57,15 @@ public class UserInterface {
 
 
 
-    public void feedMoney(){
-        System.out.print("How much would you like to add? $");
-        String value = keyboard.nextLine();
+    public void feedMoney(String value){
         if(value == null){
             System.out.println("Please enter a valid amount of money.");
         }
         double money = Double.parseDouble(value);
         if(money <= 0){
             System.out.println("Please enter a valid amount of money.");
+        } else if((money * 100)%5 != 0){
+            System.out.println("Please enter a valid amount of money (no pennies).");
         } else {
             balance.setRemainingBalance(balance.getRemainingBalance() + money);
             log.feedLog(money);

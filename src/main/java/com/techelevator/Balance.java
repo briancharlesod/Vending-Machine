@@ -11,7 +11,7 @@ public class Balance {
         return df.format(remainingBalance);
     }
 
-    public static double getRemainingBalance() {
+    public double getRemainingBalance() {
         return remainingBalance;
     }
 
@@ -20,7 +20,7 @@ public class Balance {
         return m;
     }
 
-    public static void setRemainingBalance(double currentBalance1) {
+    public void setRemainingBalance(double currentBalance1) {
         remainingBalance = currentBalance1;
     }
 
