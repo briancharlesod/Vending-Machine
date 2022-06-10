@@ -2,19 +2,23 @@ package com.techelevator;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.HashMap;
+import java.text.DecimalFormat;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class SnacksMapMethods {
+public class SnacksMap {
     public Map<String, Snacks> snacksMap = new LinkedHashMap<>();
     private String filePath = "vendingmachine.csv";
+    DecimalFormat df = new DecimalFormat("0.00");
     Balance balance = new Balance();
 
     public void createMap() {
         File newFile = new File(filePath);
 
+        if(!newFile.exists() || !newFile.isFile()){
+            System.out.println("Not a valid file");
+        }
         try { Scanner reader = new Scanner(newFile);
             while (reader.hasNextLine()) {
 
@@ -33,35 +37,22 @@ public class SnacksMapMethods {
 
     }
 
-    public String displayItemsForSale(){
-        for(String i : snacksMap.keySet()){
-            System.out.println(snacksMap.get(i));
-        }
-        return "";
-    }
-
-    public Map<String, Snacks> getSnacksMap() {
-        return snacksMap;
-    }
-
-    public void put(String f, Snacks e){
-        snacksMap.put(f, e);
-    }
-
     public String purchaseItem(String itemNumber){
-        String m = "Didn't work";
+        String m;
+        int moneyLeft = (int)(balance.getRemainingBalance()*100);
         if(snacksMap.containsKey(itemNumber)){
+            int snackPrice = (int)(snacksMap.get(itemNumber).getPrice() * 100);
             if(snacksMap.get(itemNumber).getAmountInStock() > 0){
-                if(balance.getRemainingBalance() >= snacksMap.get(itemNumber).getPrice()){
-                    balance.setRemainingBalance(balance.getRemainingBalance() - snacksMap.get(itemNumber).getPrice());
+                if(moneyLeft >= snackPrice){
+                    balance.setRemainingBalance((moneyLeft - snackPrice) / 100.0);
                     snacksMap.get(itemNumber).setAmountInStock(snacksMap.get(itemNumber).getAmountInStock() - 1);
-                    m = snacksMap.get(itemNumber).getProductName() + " " + snacksMap.get(itemNumber).getPrice() + " " + balance.getRemainingBalance() + " " + snacksMap.get(itemNumber).getSound();
+                    m = snacksMap.get(itemNumber).getProductName() + " $" + snacksMap.get(itemNumber).getPrice() + " " + balance.getRemainingBalance() + " " + snacksMap.get(itemNumber).getSound();
                     return m;
                 } else {
-                    m = "Sorry, not enough $$";
+                    m = "Sorry, not enough money to make purchase";
                 }
             } else {
-                m = "Sorry bud, we're out of stock";
+                m = "Item is all out of stock";
             }
         } else{
             m = "Item does not exist";
@@ -69,5 +60,9 @@ public class SnacksMapMethods {
         return m;
     }
 
+    public String displayMode(String key){
+        String price = df.format(snacksMap.get(key).getPrice());
+        String displayProduct = snacksMap.get(key).getSlotLocation() + " " + snacksMap.get(key).getProductName() + " $" + price + " Stock: " + snacksMap.get(key).getAmountInStock();
+        return displayProduct;
     }
-
+}

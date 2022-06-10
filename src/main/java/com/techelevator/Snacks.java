@@ -47,10 +47,6 @@ public class Snacks {
         this.amountInStock = amountInStock;
     }
 
-
-    public void purchaseItem(String itemNumber){
-    }
-
     public String getSound(){
         String message = "No snack found!";
         if(type.equals("Chip")){

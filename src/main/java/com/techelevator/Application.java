@@ -1,7 +1,5 @@
 package com.techelevator;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 public class Application {
@@ -32,5 +30,7 @@ public class Application {
         System.out.println(snacks.purchaseItem("A8"));
 
 
+        userInterface.mainMenu();
+        
     }
 }
