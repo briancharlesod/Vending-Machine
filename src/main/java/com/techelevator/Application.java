@@ -7,6 +7,6 @@ public class Application {
         UserInterface userInterface = new UserInterface();
 
         userInterface.mainMenu();
-        
+
     }
 }
