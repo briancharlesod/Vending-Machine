@@ -10,8 +10,7 @@ public class Application {
     input.initiateFile();
     Scanner keyboard = new Scanner(System.in);
 
-<<<<<<< HEAD
-=======
+
     
         System.out.println(input.snacksMap.get("A1"));
         for (String i: input.snacksMap.keySet()){
@@ -19,7 +18,7 @@ public class Application {
         }
 
 
->>>>>>> 1df67921e8224c51280f2219a10878c54c963848
+
 
 //        System.out.println(input.snacksMap.get("A1"));
 //        for (String i: input.snacksMap.keySet()){
