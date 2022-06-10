@@ -2,9 +2,6 @@ package com.techelevator;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 public class InputFile {
@@ -23,7 +20,7 @@ try {
 
     while (reader.hasNextLine()) {
 
-        SnacksMapMethods mappy = new SnacksMapMethods();
+        SnacksMap mappy = new SnacksMap();
         String line = reader.nextLine();
         String[] myArr = line.split("\\|");
         double h = Double.parseDouble(myArr[2]);
