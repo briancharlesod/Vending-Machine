@@ -9,7 +9,7 @@ public class Snacks {
     private int amountInStock = 5;
 
 
-    InputFile inputFile = new InputFile();
+
 
 
 

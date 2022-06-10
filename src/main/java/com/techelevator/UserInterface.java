@@ -7,6 +7,7 @@ public class UserInterface {
     private String menuSelection;
     SnacksMap snacks = new SnacksMap();
     Balance balance = snacks.balance;
+    Log log = new Log();
 
     public void mainMenu() {
         snacks.createMap();
@@ -21,8 +22,10 @@ public class UserInterface {
         } else if (menuSelection.equals("2") || menuSelection.equals("(2)")) {
             purchaseMenu();
         } else if (menuSelection.equals("3") || menuSelection.equals("(3)")) {
-            getChange();
+
             System.exit(0);
+        } else if (menuSelection.equals("4") || menuSelection.equals("(4)")) {
+            log.readLog();
         } else {
             System.out.println("Invalid selection, please try again.");
             System.out.println();
@@ -31,7 +34,7 @@ public class UserInterface {
     }
 
     public void purchaseMenu(){
-        System.out.println("Current Money Provided: $" + balance.getDisplayBalance());
+        System.out.println("Current Money Provided: $" + balance.getRemainingBalance());
         System.out.println("(1) Feed Money");
         System.out.println("(2) Select Product");
         System.out.println("(3) Finish Transaction");
@@ -42,7 +45,8 @@ public class UserInterface {
         } else if(menuSelection.equals("2") || menuSelection.equals("(2)")){
             interfacePurchasing();
         } else if(menuSelection.equals("3") || menuSelection.equals("(3)")){
-            getChange();
+            log.changeLog(Balance.getRemainingBalance());
+            System.out.println(balance.change());
             mainMenu();
         } else{
             System.out.println("Invalid selection, please try again.");
@@ -50,17 +54,7 @@ public class UserInterface {
         }
     }
 
-    public void getChange(){
-        int money = (int)(balance.getRemainingBalance() * 100);
-        int quarters = money / 25;
-        money = money % 25;
-        int dimes = money / 10;
-        money = money % 10;
-        int nickels = money / 5;
-        balance.setRemainingBalance(0.0);
-        System.out.println("Your change is " + quarters + " quarters, " + dimes + " dimes, and " + nickels + " nickels.");
-        System.out.println("There is $" + balance.getDisplayBalance() + " balance remaining");
-    }
+
 
     public void feedMoney(){
         System.out.print("How much would you like to add? $");
@@ -73,6 +67,7 @@ public class UserInterface {
             System.out.println("Please enter a valid amount of money.");
         } else {
             balance.setRemainingBalance(balance.getRemainingBalance() + money);
+            log.feedLog(money);
         }
     }
 
@@ -80,7 +75,10 @@ public class UserInterface {
         displayPurchaseItems();
         System.out.print("Please enter the product number you'd like to purchase: ");
         String input = keyboard.nextLine();
+        log.spendLog(snacks.snacksMap.get(input.toUpperCase()));
+
         System.out.println(snacks.purchaseItem(input.toUpperCase()));
+
         System.out.println();
         purchaseMenu();
     }
