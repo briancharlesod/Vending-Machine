@@ -13,6 +13,8 @@ public class SnacksMap {
     DecimalFormat df = new DecimalFormat("0.00");
     Balance balance = new Balance();
 
+
+
     public void createMap() {
         File newFile = new File(filePath);
 
@@ -47,6 +49,7 @@ public class SnacksMap {
                     balance.setRemainingBalance((moneyLeft - snackPrice) / 100.0);
                     snacksMap.get(itemNumber).setAmountInStock(snacksMap.get(itemNumber).getAmountInStock() - 1);
                     m = snacksMap.get(itemNumber).getProductName() + " $" + snacksMap.get(itemNumber).getPrice() + " " + balance.getRemainingBalance() + " " + snacksMap.get(itemNumber).getSound();
+
                     return m;
                 } else {
                     m = "Sorry, not enough money to make purchase";
