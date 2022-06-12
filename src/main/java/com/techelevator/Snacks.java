@@ -11,8 +11,6 @@ public class Snacks {
 
 
 
-
-
     public Snacks(String slotLocation, String productName, double price, String type) {
         this.slotLocation = slotLocation;
         this.productName = productName;

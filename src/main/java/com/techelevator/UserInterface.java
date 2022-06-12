@@ -10,49 +10,62 @@ public class UserInterface {
     Log log = new Log();
 
     public void mainMenu() {
-        snacks.createMap();
-        System.out.println("(1) Display Vending Machine Items");
-        System.out.println("(2) Purchase");
-        System.out.println("(3) Exit");
-        menuSelection = keyboard.nextLine();
-        if (menuSelection.equals("1") || menuSelection.equals("(1)")) {
-            displayPurchaseItems();
-            System.out.println();
-            mainMenu();
-        } else if (menuSelection.equals("2") || menuSelection.equals("(2)")) {
-            purchaseMenu();
-        } else if (menuSelection.equals("3") || menuSelection.equals("(3)")) {
-            System.exit(0);
-        } else if (menuSelection.equals("4") || menuSelection.equals("(4)")) {
-            log.readLog();
-        } else {
-            System.out.println("Invalid selection, please try again.");
-            System.out.println();
-            mainMenu();
-        }
+        do {
+            snacks.createMap();
+            System.out.println("(1) Display Vending Machine Items");
+            System.out.println("(2) Purchase");
+            System.out.println("(3) Exit");
+            menuSelection = keyboard.nextLine();
+            if(menuSelection.length() > 1){
+                menuSelection = menuSelection.substring(1,2);
+            }
+            if (menuSelection.equals("1")) {
+                displayPurchaseItems();
+                System.out.println();
+                mainMenu();
+            } else if (menuSelection.equals("2")) {
+                purchaseMenu();
+            } else if (menuSelection.equals("3")) {
+                System.exit(0);
+            } else if (menuSelection.equals("4")) {
+                log.readLog();
+            } else {
+                System.out.println("Invalid selection, please try again.");
+                System.out.println();
+                mainMenu();
+            }
+        } while(!menuSelection.equals("3"));
     }
 
-    public void purchaseMenu(){
-        System.out.println("Current Money Provided: $" + balance.getDisplayBalance());
-        System.out.println("(1) Feed Money");
-        System.out.println("(2) Select Product");
-        System.out.println("(3) Finish Transaction");
-        menuSelection = keyboard.nextLine();
-        if(menuSelection.equals("1") || menuSelection.equals("(1)")){
-            System.out.print("How much would you like to add? $");
-            String value = keyboard.nextLine();
-            feedMoney(value);
-            purchaseMenu();
-        } else if(menuSelection.equals("2") || menuSelection.equals("(2)")){
-            interfacePurchasing();
-        } else if(menuSelection.equals("3") || menuSelection.equals("(3)")){
-            log.changeLog(balance.getRemainingBalance());
-            System.out.println(balance.change());
-            mainMenu();
-        } else{
-            System.out.println("Invalid selection, please try again.");
-            purchaseMenu();
-        }
+    public void purchaseMenu() {
+        do{
+            System.out.println("Current Money Provided: $" + balance.getDisplayBalance());
+            System.out.println("(1) Feed Money");
+            System.out.println("(2) Select Product");
+            System.out.println("(3) Finish Transaction");
+            menuSelection = keyboard.nextLine();
+            if(menuSelection.length() > 1){
+                menuSelection = menuSelection.substring(1,2);
+            }
+            if (menuSelection.equals("1")) {
+                System.out.print("How much would you like to add? $");
+                String value = keyboard.nextLine();
+                feedMoney(value);
+                purchaseMenu();
+            } else if (menuSelection.equals("2")) {
+                displayPurchaseItems();
+                System.out.print("Please enter the product number you'd like to purchase: ");
+                String input = keyboard.nextLine();
+                interfacePurchasing(input);
+            } else if (menuSelection.equals("3")) {
+                log.changeLog(balance.getRemainingBalance());
+                System.out.println(balance.change());
+                mainMenu();
+            } else {
+                System.out.println("Invalid selection, please try again.");
+                purchaseMenu();
+            }
+        } while(!menuSelection.equals("3"));
     }
 
 
@@ -72,10 +85,7 @@ public class UserInterface {
         }
     }
 
-    public void interfacePurchasing(){
-        displayPurchaseItems();
-        System.out.print("Please enter the product number you'd like to purchase: ");
-        String input = keyboard.nextLine();
+    public void interfacePurchasing(String input){
         log.spendLog(snacks.snacksMap.get(input.toUpperCase()));
 
         System.out.println(snacks.purchaseItem(input.toUpperCase()));

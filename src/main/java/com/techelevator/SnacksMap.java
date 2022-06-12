@@ -48,7 +48,7 @@ public class SnacksMap {
                 if(moneyLeft >= snackPrice){
                     balance.setRemainingBalance((moneyLeft - snackPrice) / 100.0);
                     snacksMap.get(itemNumber).setAmountInStock(snacksMap.get(itemNumber).getAmountInStock() - 1);
-                    m = snacksMap.get(itemNumber).getProductName() + " $" + snacksMap.get(itemNumber).getPrice() + " " + balance.getRemainingBalance() + " " + snacksMap.get(itemNumber).getSound();
+                    m = snacksMap.get(itemNumber).getProductName() + " Cost $" + df.format(snacksMap.get(itemNumber).getPrice()) + " Remaining Balance: $" + balance.getDisplayBalance() + "\n" + snacksMap.get(itemNumber).getSound();
 
                     return m;
                 } else {
@@ -64,7 +64,15 @@ public class SnacksMap {
     }
 
     public String displayMode(String key){
+        int length = 0;
+        for(String i : snacksMap.keySet()){
+            if(snacksMap.get(i).getProductName().length() > length){
+                length = snacksMap.get(i).getProductName().length();
+            }
+        }
         String price = df.format(snacksMap.get(key).getPrice());
-        return snacksMap.get(key).getSlotLocation() + " " + snacksMap.get(key).getProductName() + " $" + price + " Stock: " + snacksMap.get(key).getAmountInStock();
+        int spacing = (int)(length*1.2) - snacksMap.get(key).getProductName().length();
+        String space = " ";
+        return snacksMap.get(key).getSlotLocation() + " " + snacksMap.get(key).getProductName() + space.repeat(spacing) + "$" + price + " Stock: " + snacksMap.get(key).getAmountInStock();
     }
 }
