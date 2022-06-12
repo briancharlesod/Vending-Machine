@@ -17,8 +17,8 @@ public class Log {
 
         public void feedLog(double fed) {
             try (PrintWriter writer = new PrintWriter(new FileWriter(log , true))) {
-
-                writer.println(dateTime + " " + "FEED MONEY: $" + fed + " $" + Balance.remainingBalance);
+                String f = "FEED MONEY: $" + fed + " $" + Balance.remainingBalance;
+                writer.println(dateTime + " " + f);
             } catch (Exception e) {
                 System.out.println("log not found");
             }
@@ -26,8 +26,8 @@ public class Log {
 
         public void spendLog(Snacks buy) {
             try (PrintWriter writer = new PrintWriter(new FileWriter(log, true))) {
-
-                writer.println(dateTime + " " + buy.getProductName() + " "  + buy.getSlotLocation() + " $" + buy.getPrice() + " $" + Balance.remainingBalance);
+                String s = buy.getProductName() + " "  + buy.getSlotLocation() + " $" + buy.getPrice() + " $" + Balance.remainingBalance;
+                writer.println(dateTime + " " + s);
             } catch (Exception e) {
                 System.out.println("log not found");
             }
@@ -35,11 +35,12 @@ public class Log {
 
         public void changeLog(double change) {
             try (PrintWriter writer = new PrintWriter(new FileWriter(log, true))) {
-
-                writer.println(dateTime + " " + "GIVE CHANGE: $" + change + " $0.00");
+                String c = "GIVE CHANGE: $" + change + " $0.00";
+                writer.println(dateTime + " " + c);
             } catch (Exception e) {
                 System.out.println("log not found");
             }
+
         }
         public void readLog() {
 
